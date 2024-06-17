@@ -1,29 +1,31 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ConsoleApp143
+namespace ConsoleApp153
 {
-    class Funcionarios
+    internal class Funcionario
     {
-        public int Id { get; private set; }
-        public string Nome { get; private set; }
-        public double Salario { get; private set; }
+        public int ID {  get; private set; }
+        public string Nome { get;private set; }
+        public double Salario { get;private set; }
 
-        public Funcionarios(int id, string nome, double salario)
+        public Funcionario(int id, string nome, double salario)
         {
-            Id = id;
+            ID = id;
             Nome = nome;
             Salario = salario;
         }
-
-        public void AplicarAumento(double porcentagem)
+        public void AumentoSalario (double porcentagem)
         {
-            Salario += Salario * porcentagem / 100.0;
+            Salario += (Salario * porcentagem) / 100;
         }
-
         public override string ToString()
         {
-            return $"ID: {Id}, Nome: {Nome}, Salário: {Salario.ToString("F2", CultureInfo.InvariantCulture)}";
+            return ID + ", " + Nome + ", " + Salario.ToString("f2",CultureInfo.InvariantCulture);
         }
     }
 }
