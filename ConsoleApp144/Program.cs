@@ -1,49 +1,47 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ConsoleApp143
+namespace ConsoleApp153
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.Write("Quantos funcionários gostaria de registrar: ");
+            Console.Write("Quantos funicionarios gostaria de registrar: ");
             int N = int.Parse(Console.ReadLine());
-            Funcionarios[] F = new Funcionarios[N];
-
+            Funcionario[] Func = new Funcionario[N];
             for (int i = 0; i < N; i++)
             {
-                Console.WriteLine("Funcionário #{0}",i);
-                Console.Write("ID Funcionario: ");
+                Console.WriteLine("Funcionario #{0}", i);
+                Console.Write("ID: ");
                 int id = int.Parse(Console.ReadLine());
                 Console.Write("Nome: ");
                 string nome = Console.ReadLine();
-                Console.Write("Salário Funcionario: ");
-                double salario = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                F[i] = new Funcionarios(id, nome, salario);
-            };
-  
-            Console.WriteLine("Digite o ID do funcionário que gostaria de alterar o salário: ");
-            int idat = int.Parse(Console.ReadLine());
-
-            Funcionarios funcionario = Array.Find(F, f => f?.Id == idat);
-
-            if (funcionario != null)
+                Console.Write("Salario: ");
+                double salario = double.Parse(Console.ReadLine(),CultureInfo.InvariantCulture);
+                Func[i] = new Funcionario(id, nome, salario);
+            }
+            Console.WriteLine("Digite Id funcionario que gostaria de alterar salario: ");
+            int novoId = int.Parse(Console.ReadLine());
+            Funcionario Func2 = Array.Find(Func, f => f?.ID == novoId);
+            if (Func2 != null)
             {
-                Console.WriteLine("Qual porcentagem de aumento salarial: ");
-                double porcentagem = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
-                funcionario.AplicarAumento(porcentagem);
-
-                Console.WriteLine("Lista de funcionários atualizada:");
-                foreach (var f in F)
+                Console.WriteLine("Qual porcentagem de aumento no salario: ");
+                double porcentagem = double.Parse(Console.ReadLine(),CultureInfo.InvariantCulture);
+                Func2.AumentoSalario(porcentagem);
+                Console.WriteLine("Lista funcionarios atualizada: ");
+                foreach (var obj in Func)
                 {
-                    Console.WriteLine(f);
+                    Console.WriteLine(obj);
                 }
             }
             else
             {
-                Console.WriteLine("ID funcionário não encontrado,Tente novamente!");
+                Console.WriteLine("Id funcionario não encontrado, tente novamente!!");
             }
             Console.ReadLine();
         }
